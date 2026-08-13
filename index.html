@@ -1,83 +1,597 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Otimização do Tempo de Recebimento de Cargas | Lean Logistics</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-slate-900 text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between">
+<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-blue-500 selection:text-white">
 
-  <!-- Header -->
-  <header class="border-b border-slate-800 bg-slate-950/50 backdrop-blur">
-    <div class="max-w-5xl mx-auto px-6 py-6 flex flex-col md:flex-row justify-between items-center gap-4">
-      <div>
-        <h1 class="text-xl font-bold text-white tracking-tight">Carlos Roberto dos Santos Martins</h1>
-        <p class="text-sm text-slate-400">Estudo de Caso — Lean Logistics & VSM</p>
+  <!-- Header Executive -->
+  <header class="sticky top-0 z-50 bg-slate-950/90 backdrop-blur-md border-b border-slate-800">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-3 h-3 rounded-full bg-blue-500 animate-pulse"></div>
+        <div>
+          <span class="font-bold text-white tracking-wide text-sm md:text-base block">Carlos Roberto dos Santos Martins</span>
+          <span class="text-xs text-slate-400">Estudo de Caso Conceitual — Simulação para Portfólio</span>
+        </div>
       </div>
-      <a href="./Otimizacao-do-Tempo-de-Recebimento-de-Cargas.pdf" download target="_blank" 
-         class="bg-blue-600 hover:bg-blue-500 text-white text-sm font-semibold px-5 py-2.5 rounded-lg transition-all shadow-lg shadow-blue-500/20">
-        📄 Baixar PDF Completo
-      </a>
+      <nav class="flex flex-wrap gap-4 text-xs font-semibold text-slate-400">
+        <a href="#contexto" class="hover:text-blue-400 transition-colors">Contexto & SIPOC</a>
+        <a href="#diagnostico" class="hover:text-blue-400 transition-colors">AS-IS & 7 Desperdícios</a>
+        <a href="#pareto-ishikawa" class="hover:text-blue-400 transition-colors">Pareto & 6M</a>
+        <a href="#solucao" class="hover:text-blue-400 transition-colors">5 Pilares & VSM</a>
+        <a href="#financeiro" class="hover:text-blue-400 transition-colors">Financeiro & 5W2H</a>
+        <a href="#riscos" class="hover:text-blue-400 transition-colors">Riscos & Governança</a>
+      </nav>
     </div>
   </header>
 
-  <!-- Hero Section -->
-  <main class="max-w-5xl mx-auto px-6 py-12 flex-grow">
-    <div class="mb-10 text-center md:text-left">
-      <span class="text-xs font-semibold uppercase tracking-wider text-blue-400 bg-blue-500/10 px-3 py-1 rounded-full border border-blue-500/20">
-        Projeto de Portfólio Conceitual
-      </span>
-      <h2 class="text-3xl md:text-5xl font-extrabold text-white mt-4 mb-4 leading-tight">
-        Otimização do Tempo de Recebimento de Cargas
-      </h2>
-      <p class="text-slate-400 text-lg max-w-3xl">
-        Aplicação de metodologias Lean Logistics, Mapeamento de Fluxo de Valor (VSM) e análise de viabilidade financeira para eliminação de gargalos no recebimento.
-      </p>
+  <!-- Hero / Cabeçalho Principal -->
+  <section class="max-w-6xl mx-auto px-6 pt-12 pb-8">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-semibold uppercase tracking-wider mb-4">
+      ESTUDO DE CASO CONCEITUAL — SIMULAÇÃO PARA PORTFÓLIO
+    </div>
+    
+    <h1 class="text-3xl md:text-5xl font-extrabold text-white tracking-tight leading-tight mb-4">
+      Otimização do Tempo de Recebimento de Cargas
+    </h1>
+    
+    <p class="text-slate-300 text-base md:text-lg max-w-4xl leading-relaxed mb-4">
+      Lean Logistics, VSM e Melhoria Contínua aplicados a uma operação de recebimento com gargalos críticos. Projeto estruturado para identificação de desperdícios, redesenho do fluxo operacional e projeção de ganhos de eficiência e capacidade.
+    </p>
+
+    <p class="text-xs text-slate-500 italic mb-8">
+      * Estudo de caso conceitual — dados fictícios utilizados para demonstração de competências técnicas.
+    </p>
+
+    <!-- Destaques Numéricos (4 Cards da Capa) -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 hover:border-emerald-500/50 transition-all">
+        <div class="text-3xl md:text-4xl font-black text-emerald-400 mb-1">-75%</div>
+        <div class="text-xs font-bold text-white uppercase tracking-wider">Dwell Time</div>
+        <p class="text-xs text-slate-400 mt-1">Redução de 220 min para 55 min por veículo</p>
+      </div>
+
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 hover:border-blue-500/50 transition-all">
+        <div class="text-3xl md:text-4xl font-black text-blue-400 mb-1">+200%</div>
+        <div class="text-xs font-bold text-white uppercase tracking-wider">Capacidade Projetada</div>
+        <p class="text-xs text-slate-400 mt-1">De 18 para 54 veículos/dia no mesmo espaço</p>
+      </div>
+
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 hover:border-purple-500/50 transition-all">
+        <div class="text-3xl md:text-4xl font-black text-purple-400 mb-1">2,8</div>
+        <div class="text-xs font-bold text-white uppercase tracking-wider">Payback Projetado (meses)</div>
+        <p class="text-xs text-slate-400 mt-1">Retorno integral do investimento em menos de 90 dias</p>
+      </div>
+
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 hover:border-amber-500/50 transition-all">
+        <div class="text-3xl md:text-4xl font-black text-amber-400 mb-1">332%</div>
+        <div class="text-xs font-bold text-white uppercase tracking-wider">ROI Projetado — 1º Ano</div>
+        <p class="text-xs text-slate-400 mt-1">Retorno sobre investimento total no ciclo anual</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="border-slate-800/80 max-w-6xl mx-auto my-6">
+
+  <!-- SLIDE 2: Contexto Operacional e SIPOC -->
+  <section id="contexto" class="max-w-6xl mx-auto px-6 py-8">
+    <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+      <span class="w-2 h-7 bg-blue-500 rounded-full"></span> Contexto Operacional, Desafio e Escopo
+    </h2>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-6">
+        <h3 class="text-base font-bold text-blue-400 uppercase tracking-wider mb-4">Operação Inicial</h3>
+        <ul class="space-y-3 text-sm text-slate-300">
+          <li class="flex items-start gap-2"><span class="text-blue-500 font-bold">•</span> 18 veículos/dia sem agendamento prévio</li>
+          <li class="flex items-start gap-2"><span class="text-blue-500 font-bold">•</span> Filas críticas na portaria — tempos de espera elevados</li>
+          <li class="flex items-start gap-2"><span class="text-blue-500 font-bold">•</span> Processo de check-in 100% manual e documental</li>
+          <li class="flex items-start gap-2"><span class="text-blue-500 font-bold">•</span> Dwell time médio: 220 minutos (3h40min)</li>
+          <li class="flex items-start gap-2"><span class="text-blue-500 font-bold">•</span> Capacidade subutilizada e sem rastreabilidade em tempo real</li>
+        </ul>
+      </div>
+
+      <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-6">
+        <h3 class="text-base font-bold text-blue-400 uppercase tracking-wider mb-4">Matriz SIPOC — Delimitação do Escopo</h3>
+        <div class="space-y-2 text-xs">
+          <div class="p-2.5 bg-slate-800/50 rounded-lg border border-slate-700/50"><strong class="text-white block">Fornecedores:</strong> Transportadoras e prestadores de serviço logístico</div>
+          <div class="p-2.5 bg-slate-800/50 rounded-lg border border-slate-700/50"><strong class="text-white block">Entradas:</strong> Veículos, cargas, documentação fiscal e NF-e</div>
+          <div class="p-2.5 bg-slate-800/50 rounded-lg border border-slate-700/50"><strong class="text-white block">Processos:</strong> Check-in, descarga, conferência, lançamento ERP, endereçamento</div>
+          <div class="p-2.5 bg-slate-800/50 rounded-lg border border-slate-700/50"><strong class="text-white block">Saídas:</strong> Produtos disponíveis no estoque com rastreabilidade</div>
+          <div class="p-2.5 bg-slate-800/50 rounded-lg border border-slate-700/50"><strong class="text-white block">Clientes:</strong> Armazém, produção interna e planejamento de demanda</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 3: Diagnóstico AS-IS & 7 Desperdícios Lean -->
+  <section id="diagnostico" class="max-w-6xl mx-auto px-6 py-8">
+    <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+      <span class="w-2 h-7 bg-blue-500 rounded-full"></span> Diagnóstico AS-IS e Desperdícios Lean
+    </h2>
+
+    <!-- Distribuição do Dwell Time -->
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 mb-8">
+      <h3 class="text-base font-bold text-slate-200 mb-4">Distribuição do Dwell Time (220 min)</h3>
+      
+      <div class="space-y-4">
+        <div>
+          <div class="flex justify-between text-xs font-semibold mb-1">
+            <span class="text-slate-300">Espera na portaria</span>
+            <span class="text-red-400">90 min (40,9%)</span>
+          </div>
+          <div class="w-full bg-slate-800 rounded-full h-3 overflow-hidden">
+            <div class="bg-red-500 h-3 rounded-full" style="width: 40.9%"></div>
+          </div>
+        </div>
+
+        <div>
+          <div class="flex justify-between text-xs font-semibold mb-1">
+            <span class="text-slate-300">Descarga</span>
+            <span class="text-amber-400">60 min (27,3%)</span>
+          </div>
+          <div class="w-full bg-slate-800 rounded-full h-3 overflow-hidden">
+            <div class="bg-amber-500 h-3 rounded-full" style="width: 27.3%"></div>
+          </div>
+        </div>
+
+        <div>
+          <div class="flex justify-between text-xs font-semibold mb-1">
+            <span class="text-slate-300">Conferência</span>
+            <span class="text-yellow-400">35 min (15,9%)</span>
+          </div>
+          <div class="w-full bg-slate-800 rounded-full h-3 overflow-hidden">
+            <div class="bg-yellow-500 h-3 rounded-full" style="width: 15.9%"></div>
+          </div>
+        </div>
+
+        <div>
+          <div class="flex justify-between text-xs font-semibold mb-1">
+            <span class="text-slate-300">Check-in documental</span>
+            <span class="text-blue-400">25 min (11,4%)</span>
+          </div>
+          <div class="w-full bg-slate-800 rounded-full h-3 overflow-hidden">
+            <div class="bg-blue-500 h-3 rounded-full" style="width: 11.4%"></div>
+          </div>
+        </div>
+
+        <div>
+          <div class="flex justify-between text-xs font-semibold mb-1">
+            <span class="text-slate-300">Lançamento ERP</span>
+            <span class="text-slate-400">10 min (4,5%)</span>
+          </div>
+          <div class="w-full bg-slate-800 rounded-full h-3 overflow-hidden">
+            <div class="bg-slate-500 h-3 rounded-full" style="width: 4.5%"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-4 p-3 bg-red-500/10 border border-red-500/20 rounded-xl text-xs text-red-300 font-semibold text-center">
+        Espera + Descarga + Conferência concentram 84,1% do tempo total de atraso.
+      </div>
     </div>
 
-    <!-- Cards de Indicadores -->
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
-      <div class="bg-slate-800/50 border border-slate-700/50 rounded-xl p-5 text-center">
-        <span class="text-3xl font-extrabold text-emerald-400">-75%</span>
-        <p class="text-xs text-slate-400 mt-1 uppercase font-medium">Dwell Time</p>
-        <p class="text-xs text-slate-500 mt-0.5">220 min → 55 min</p>
+    <!-- Os 7 Desperdícios Lean -->
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+      <h3 class="text-base font-bold text-slate-200 mb-4">Os 7 Desperdícios Lean Identificados</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 text-xs">
+        <div class="p-3 bg-slate-800/40 rounded-xl border border-slate-700/50">
+          <strong class="text-blue-400 block mb-1">Espera</strong>
+          <span class="text-slate-300">Filas na portaria sem agendamento</span>
+        </div>
+        <div class="p-3 bg-slate-800/40 rounded-xl border border-slate-700/50">
+          <strong class="text-blue-400 block mb-1">Transporte</strong>
+          <span class="text-slate-300">Rotas internas ineficientes</span>
+        </div>
+        <div class="p-3 bg-slate-800/40 rounded-xl border border-slate-700/50">
+          <strong class="text-blue-400 block mb-1">Movimentação</strong>
+          <span class="text-slate-300">Busca manual de endereços</span>
+        </div>
+        <div class="p-3 bg-slate-800/40 rounded-xl border border-slate-700/50">
+          <strong class="text-blue-400 block mb-1">WIP</strong>
+          <span class="text-slate-300">Cargas paradas aguardando conferência</span>
+        </div>
+        <div class="p-3 bg-slate-800/40 rounded-xl border border-slate-700/50">
+          <strong class="text-blue-400 block mb-1">Processamento</strong>
+          <span class="text-slate-300">Redigitação de dados no ERP</span>
+        </div>
+        <div class="p-3 bg-slate-800/40 rounded-xl border border-slate-700/50">
+          <strong class="text-blue-400 block mb-1">Defeitos</strong>
+          <span class="text-slate-300">Erros de lançamento e divergências</span>
+        </div>
+        <div class="p-3 bg-slate-800/40 rounded-xl border border-slate-700/50 sm:col-span-2 md:col-span-2">
+          <strong class="text-blue-400 block mb-1">Talento</strong>
+          <span class="text-slate-300">Equipe em tarefas operacionais repetitivas</span>
+        </div>
       </div>
-      <div class="bg-slate-800/50 border border-slate-700/50 rounded-xl p-5 text-center">
-        <span class="text-3xl font-extrabold text-blue-400">+200%</span>
-        <p class="text-xs text-slate-400 mt-1 uppercase font-medium">Capacidade</p>
-        <p class="text-xs text-slate-500 mt-0.5">18 → 54 veíq/dia</p>
+    </div>
+  </section>
+
+  <!-- SLIDE 4: Pareto e Ishikawa -->
+  <section id="pareto-ishikawa" class="max-w-6xl mx-auto px-6 py-8">
+    <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+      <span class="w-2 h-7 bg-blue-500 rounded-full"></span> Análise de Causa Raiz: Pareto e Ishikawa
+    </h2>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <!-- Curva de Pareto -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+        <h3 class="text-base font-bold text-slate-200 mb-4">Curva de Pareto — Concentração das Perdas</h3>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-slate-800 text-slate-300 uppercase">
+              <tr>
+                <th class="p-2.5">Causa de Perda</th>
+                <th class="p-2.5">Tempo (min)</th>
+                <th class="p-2.5">% Acumulado</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-800 text-slate-300">
+              <tr class="bg-red-500/10">
+                <td class="p-2.5 font-bold text-white">Espera na portaria</td>
+                <td class="p-2.5 font-bold">90 min</td>
+                <td class="p-2.5">40,9%</td>
+              </tr>
+              <tr class="bg-amber-500/10">
+                <td class="p-2.5 font-bold text-white">Descarga</td>
+                <td class="p-2.5 font-bold">60 min</td>
+                <td class="p-2.5">68,2%</td>
+              </tr>
+              <tr class="bg-yellow-500/10">
+                <td class="p-2.5 font-bold text-white">Conferência</td>
+                <td class="p-2.5 font-bold">35 min</td>
+                <td class="p-2.5 font-bold text-emerald-400">84,1%</td>
+              </tr>
+              <tr>
+                <td class="p-2.5">Check-in documental</td>
+                <td class="p-2.5">25 min</td>
+                <td class="p-2.5">95,5%</td>
+              </tr>
+              <tr>
+                <td class="p-2.5">Lançamento ERP</td>
+                <td class="p-2.5">10 min</td>
+                <td class="p-2.5">100,0%</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="mt-4 text-xs text-slate-400 bg-slate-800/50 p-3 rounded-lg border border-slate-700/50">
+          <strong>Limiar Crítico (80%):</strong> As três primeiras causas concentram 84,1% das perdas — acima do limiar crítico de 80%.
+        </p>
       </div>
-      <div class="bg-slate-800/50 border border-slate-700/50 rounded-xl p-5 text-center">
-        <span class="text-3xl font-extrabold text-purple-400">2,8 min</span>
-        <p class="text-xs text-slate-400 mt-1 uppercase font-medium">Payback</p>
-        <p class="text-xs text-slate-500 mt-0.5">Retorno rápido</p>
+
+      <!-- Ishikawa 6M -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+        <h3 class="text-base font-bold text-slate-200 mb-4">Diagrama de Ishikawa — 6M</h3>
+        <div class="grid grid-cols-2 gap-2 text-xs">
+          <div class="p-2.5 bg-slate-800/40 rounded-lg border border-slate-800">
+            <strong class="text-blue-400 block">Método:</strong> Sem agendamento, sem padronização de descarga
+          </div>
+          <div class="p-2.5 bg-slate-800/40 rounded-lg border border-slate-800">
+            <strong class="text-blue-400 block">Mão de Obra:</strong> Treinamento insuficiente, multitarefa excessiva
+          </div>
+          <div class="p-2.5 bg-slate-800/40 rounded-lg border border-slate-800">
+            <strong class="text-blue-400 block">Tecnologia:</strong> Sem WMS na doca, integração ERP manual
+          </div>
+          <div class="p-2.5 bg-slate-800/40 rounded-lg border border-slate-800">
+            <strong class="text-blue-400 block">Material:</strong> Cargas sem paletização e etiquetagem na origem
+          </div>
+          <div class="p-2.5 bg-slate-800/40 rounded-lg border border-slate-800">
+            <strong class="text-blue-400 block">Medição:</strong> Sem KPIs em tempo real, sem dashboards
+          </div>
+          <div class="p-2.5 bg-slate-800/40 rounded-lg border border-slate-800">
+            <strong class="text-blue-400 block">Meio Ambiente:</strong> Layout de docas sem fluxo definido
+          </div>
+        </div>
       </div>
-      <div class="bg-slate-800/50 border border-slate-700/50 rounded-xl p-5 text-center">
-        <span class="text-3xl font-extrabold text-amber-400">332%</span>
-        <p class="text-xs text-slate-400 mt-1 uppercase font-medium">ROI (1º Ano)</p>
-        <p class="text-xs text-slate-500 mt-0.5">Retorno sobre capital</p>
+    </div>
+  </section>
+
+  <!-- SLIDE 5 & 6: Soluções TO-BE & VSM Comparativo -->
+  <section id="solucao" class="max-w-6xl mx-auto px-6 py-8">
+    <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+      <span class="w-2 h-7 bg-blue-500 rounded-full"></span> Soluções Propostas & VSM Comparativo
+    </h2>
+
+    <!-- Os 5 Pilares -->
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 mb-8">
+      <h3 class="text-base font-bold text-slate-200 mb-4">Os 5 Pilares do Processo TO-BE</h3>
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-3 text-xs">
+        <div class="p-3 bg-slate-800/40 rounded-xl border border-slate-700/50">
+          <strong class="text-blue-400 block text-sm mb-1">1. Agendamento de Janelas</strong>
+          Janelas fixas de 45 minutos por veículo. Redução das filas e nivelamento da demanda na portaria.
+        </div>
+        <div class="p-3 bg-slate-800/40 rounded-xl border border-slate-700/50">
+          <strong class="text-blue-400 block text-sm mb-1">2. Pré-Check-in Documental</strong>
+          Validação digital de NF-e e documentação antes da chegada. Redução do check-in de 25 min para 5 min.
+        </div>
+        <div class="p-3 bg-slate-800/40 rounded-xl border border-slate-700/50">
+          <strong class="text-blue-400 block text-sm mb-1">3. Coletores WMS na Doca</strong>
+          Leitura de código de barras integrada ao WMS. Conferência automatizada e eliminação da redigitação no ERP.
+        </div>
+        <div class="p-3 bg-slate-800/40 rounded-xl border border-slate-700/50">
+          <strong class="text-blue-400 block text-sm mb-1">4. Paletização e Etiquetagem na Origem</strong>
+          Padronização exigida aos fornecedores. Redução do tempo de descarga de 60 min para 20 min.
+        </div>
+        <div class="p-3 bg-slate-800/40 rounded-xl border border-slate-700/50">
+          <strong class="text-blue-400 block text-sm mb-1">5. Endereçamento Dirigido</strong>
+          O WMS indica a localização exata ao operador. Eliminação da busca manual e do endereçamento aleatório.
+        </div>
       </div>
     </div>
 
-    <!-- Botões de Ação -->
-    <div class="bg-slate-800/30 border border-slate-800 rounded-2xl p-8 text-center flex flex-col items-center">
-      <h3 class="text-xl font-bold text-white mb-2">Visualizar o Estudo de Caso Completo</h3>
-      <p class="text-slate-400 text-sm mb-6 max-w-xl">
-        Acesse a apresentação em PDF contendo o detalhamento do VSM (AS-IS vs. TO-BE), Análise de Pareto, Ishikawa e a DRE com payback do projeto.
+    <!-- Tabela VSM -->
+    <div class="overflow-x-auto bg-slate-900 border border-slate-800 rounded-2xl mb-6">
+      <table class="w-full text-left text-xs">
+        <thead class="bg-slate-800 text-slate-300 uppercase">
+          <tr>
+            <th class="p-3.5">Etapa do Processo</th>
+            <th class="p-3.5">AS-IS (min)</th>
+            <th class="p-3.5">TO-BE (min)</th>
+            <th class="p-3.5">Redução</th>
+            <th class="p-3.5">Alavanca de Melhoria</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-800 text-slate-300">
+          <tr>
+            <td class="p-3.5 font-bold text-white">Espera na portaria</td>
+            <td class="p-3.5 text-red-400">90</td>
+            <td class="p-3.5 text-emerald-400 font-bold">5</td>
+            <td class="p-3.5 text-emerald-400 font-bold">-94%</td>
+            <td class="p-3.5 text-slate-400">Agendamento de janelas de 45 min</td>
+          </tr>
+          <tr>
+            <td class="p-3.5 font-bold text-white">Check-in documental</td>
+            <td class="p-3.5 text-red-400">25</td>
+            <td class="p-3.5 text-emerald-400 font-bold">5</td>
+            <td class="p-3.5 text-emerald-400 font-bold">-80%</td>
+            <td class="p-3.5 text-slate-400">Pré-check-in digital (NF-e)</td>
+          </tr>
+          <tr>
+            <td class="p-3.5 font-bold text-white">Descarga</td>
+            <td class="p-3.5 text-red-400">60</td>
+            <td class="p-3.5 text-emerald-400 font-bold">20</td>
+            <td class="p-3.5 text-emerald-400 font-bold">-67%</td>
+            <td class="p-3.5 text-slate-400">Paletização e etiquetagem na origem</td>
+          </tr>
+          <tr>
+            <td class="p-3.5 font-bold text-white">Conferência</td>
+            <td class="p-3.5 text-red-400">35</td>
+            <td class="p-3.5 text-emerald-400 font-bold">15</td>
+            <td class="p-3.5 text-emerald-400 font-bold">-57%</td>
+            <td class="p-3.5 text-slate-400">Coletores WMS integrados</td>
+          </tr>
+          <tr>
+            <td class="p-3.5 font-bold text-white">Lançamento ERP</td>
+            <td class="p-3.5 text-red-400">10</td>
+            <td class="p-3.5 text-emerald-400 font-bold">0</td>
+            <td class="p-3.5 text-emerald-400 font-bold">-100%</td>
+            <td class="p-3.5 text-slate-400">Integração em tempo real</td>
+          </tr>
+          <tr>
+            <td class="p-3.5 font-bold text-white">Endereçamento</td>
+            <td class="p-3.5 text-slate-500">-</td>
+            <td class="p-3.5 text-slate-300">10</td>
+            <td class="p-3.5 text-slate-500">-</td>
+            <td class="p-3.5 text-slate-400">Endereçamento dirigido pelo WMS</td>
+          </tr>
+          <tr class="bg-blue-950/60 font-bold text-white">
+            <td class="p-3.5">Dwell Time Total</td>
+            <td class="p-3.5 text-red-400">220</td>
+            <td class="p-3.5 text-emerald-400 text-sm">55</td>
+            <td class="p-3.5 text-emerald-400 text-sm">-75%</td>
+            <td class="p-3.5 text-blue-300">Impacto sistêmico integrado</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Nota Metodológica -->
+    <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-5 text-xs text-slate-400">
+      <h4 class="font-bold text-slate-200 mb-2">Capacidade Operacional: 18 → 54 veículos/dia (Meta de +200% na capacidade)</h4>
+      <p class="leading-relaxed">
+        <strong>Nota Metodológica:</strong> A capacidade de 54 veículos/dia é tratada como meta operacional projetada, considerando a redução do dwell time de 220 para 55 minutos, o nivelamento da demanda e a utilização mais eficiente das docas. A capacidade final deverá ser validada em piloto, considerando o número de docas, disponibilidade de mão de obra, equipamentos, mix de cargas e demanda real.
       </p>
-      <div class="flex flex-wrap justify-center gap-4">
-        <a href="./Otimizacao-do-Tempo-de-Recebimento-de-Cargas.pdf" target="_blank"
-           class="bg-blue-600 hover:bg-blue-500 text-white font-semibold px-6 py-3 rounded-xl transition-all shadow-lg shadow-blue-500/20">
-          Abrir Apresentação (PDF)
-        </a>
+    </div>
+  </section>
+
+  <!-- SLIDE 7: Financeiro & 5W2H -->
+  <section id="financeiro" class="max-w-6xl mx-auto px-6 py-8">
+    <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+      <span class="w-2 h-7 bg-blue-500 rounded-full"></span> Análise Financeira, ROI e Plano de Ação 5W2H
+    </h2>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-8">
+      <!-- Investimento Inicial -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+        <h3 class="text-base font-bold text-slate-200 mb-4">Investimento Inicial Estimado</h3>
+        <table class="w-full text-xs text-left">
+          <tbody class="divide-y divide-slate-800 text-slate-300">
+            <tr><td class="py-2">Coletores WMS + Licenças</td><td class="py-2 text-right font-bold">R$ 22.000</td></tr>
+            <tr><td class="py-2">Integração ERP/WMS</td><td class="py-2 text-right font-bold">R$ 18.000</td></tr>
+            <tr><td class="py-2">Paletização na origem</td><td class="py-2 text-right font-bold">R$ 10.000</td></tr>
+            <tr><td class="py-2">Treinamento e mudança</td><td class="py-2 text-right font-bold">R$ 8.000</td></tr>
+            <tr class="text-blue-400 font-bold text-sm"><td class="pt-3">Total Investido</td><td class="pt-3 text-right">R$ 58.000</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Economia Mensal Recorrente -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+        <h3 class="text-base font-bold text-slate-200 mb-4">Economia Mensal Recorrente</h3>
+        <table class="w-full text-xs text-left">
+          <tbody class="divide-y divide-slate-800 text-slate-300">
+            <tr><td class="py-2">Eliminação de diárias de caminhões</td><td class="py-2 text-right font-bold">R$ 16.380</td></tr>
+            <tr><td class="py-2">Redução de horas extras</td><td class="py-2 text-right font-bold">R$ 3.000</td></tr>
+            <tr><td class="py-2">Eliminação de retrabalho</td><td class="py-2 text-right font-bold">R$ 1.500</td></tr>
+            <tr class="text-emerald-400 font-bold text-sm"><td class="pt-3">Total Mensal</td><td class="pt-3 text-right">R$ 20.880</td></tr>
+          </tbody>
+        </table>
       </div>
     </div>
-  </main>
+
+    <!-- Tabela 5W2H -->
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+      <h3 class="text-base font-bold text-slate-200 mb-4">Plano de Ação 5W2H — Fases de Implantação</h3>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs">
+          <thead class="bg-slate-800 text-slate-300 uppercase">
+            <tr>
+              <th class="p-2.5">Fase</th>
+              <th class="p-2.5">O Quê</th>
+              <th class="p-2.5">Quem</th>
+              <th class="p-2.5">Quando</th>
+              <th class="p-2.5">Como</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800 text-slate-300">
+            <tr>
+              <td class="p-2.5 font-bold text-blue-400">1</td>
+              <td class="p-2.5 font-bold text-white">Agendamento + Pré-check-in</td>
+              <td class="p-2.5">TI + Operações</td>
+              <td class="p-2.5">Semanas 1–4</td>
+              <td class="p-2.5">Configuração sistema + Treinamento</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-bold text-blue-400">2</td>
+              <td class="p-2.5 font-bold text-white">Coletores WMS + Integração ERP</td>
+              <td class="p-2.5">TI + Fornecedores</td>
+              <td class="p-2.5">Semanas 3–6</td>
+              <td class="p-2.5">Deploy + testes em produção</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-bold text-blue-400">3</td>
+              <td class="p-2.5 font-bold text-white">Paletização + Endereçamento</td>
+              <td class="p-2.5">Supply + Armazém</td>
+              <td class="p-2.5">Semanas 5–8</td>
+              <td class="p-2.5">Padronização + auditoria</td>
+            </tr>
+            <tr>
+              <td class="p-2.5 font-bold text-blue-400">4</td>
+              <td class="p-2.5 font-bold text-white">Go-Live + Monitoramento</td>
+              <td class="p-2.5">Gestão do Projeto</td>
+              <td class="p-2.5">Semana 9+</td>
+              <td class="p-2.5">Dailies + KPIs + Ajustes</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 8: Riscos, Governança e Lições Aprendidas -->
+  <section id="riscos" class="max-w-6xl mx-auto px-6 py-8">
+    <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+      <span class="w-2 h-7 bg-blue-500 rounded-full"></span> Matriz de Riscos, Governança e Lições Aprendidas
+    </h2>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-8">
+      <!-- Matriz de Riscos -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+        <h3 class="text-base font-bold text-slate-200 mb-4">Matriz de Riscos e Mitigação</h3>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-slate-800 text-slate-300 uppercase">
+              <tr>
+                <th class="p-2.5">Risco</th>
+                <th class="p-2.5">Impacto</th>
+                <th class="p-2.5">Mitigação</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-800 text-slate-300">
+              <tr>
+                <td class="p-2.5 font-semibold text-white">Falha de Wi-Fi na doca</td>
+                <td class="p-2.5 font-bold text-red-400">Alto</td>
+                <td class="p-2.5">Modo offline nos coletores + sincronização automática</td>
+              </tr>
+              <tr>
+                <td class="p-2.5 font-semibold text-white">Resistência à adoção do WMS</td>
+                <td class="p-2.5 font-bold text-red-400">Alto</td>
+                <td class="p-2.5">Treinamento prático + champions por área</td>
+              </tr>
+              <tr>
+                <td class="p-2.5 font-semibold text-white">Master Data desatualizado</td>
+                <td class="p-2.5 font-bold text-amber-400">Médio</td>
+                <td class="p-2.5">Auditoria prévia + governança de dados contínua</td>
+              </tr>
+              <tr>
+                <td class="p-2.5 font-semibold text-white">Não adesão de fornecedores</td>
+                <td class="p-2.5 font-bold text-amber-400">Médio</td>
+                <td class="p-2.5">Comunicação antecipada + período de transição</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Modelo de Governança -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+        <h3 class="text-base font-bold text-slate-200 mb-4">Modelo de Governança</h3>
+        <div class="space-y-3 text-xs">
+          <div class="p-3 bg-slate-800/40 rounded-xl border border-slate-700/50">
+            <strong class="text-blue-400 block text-sm">Daily (10 min)</strong>
+            <span class="text-slate-300">Alinhamento operacional e bloqueios do dia</span>
+          </div>
+          <div class="p-3 bg-slate-800/40 rounded-xl border border-slate-700/50">
+            <strong class="text-blue-400 block text-sm">Semanal</strong>
+            <span class="text-slate-300">Revisão de KPIs, desvios e ações corretivas</span>
+          </div>
+          <div class="p-3 bg-slate-800/40 rounded-xl border border-slate-700/50">
+            <strong class="text-blue-400 block text-sm">Mensal</strong>
+            <span class="text-slate-300">Steering Committee — decisões estratégicas</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5 Lições Aprendidas -->
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 mb-8">
+      <h3 class="text-base font-bold text-slate-200 mb-4">5 Lições Aprendidas</h3>
+      <ol class="grid grid-cols-1 md:grid-cols-5 gap-3 text-xs">
+        <li class="p-3 bg-slate-800/40 rounded-xl border border-slate-700/50 text-slate-300">
+          <span class="text-blue-400 font-bold block text-sm mb-1">1</span>
+          Nivelamento de demanda gera mais ganho que automação isolada
+        </li>
+        <li class="p-3 bg-slate-800/40 rounded-xl border border-slate-700/50 text-slate-300">
+          <span class="text-blue-400 font-bold block text-sm mb-1">2</span>
+          Medir antes de melhorar é pré-requisito, não opcional
+        </li>
+        <li class="p-3 bg-slate-800/40 rounded-xl border border-slate-700/50 text-slate-300">
+          <span class="text-blue-400 font-bold block text-sm mb-1">3</span>
+          Engajamento dos fornecedores é fator crítico de sucesso
+        </li>
+        <li class="p-3 bg-slate-800/40 rounded-xl border border-slate-700/50 text-slate-300">
+          <span class="text-blue-400 font-bold block text-sm mb-1">4</span>
+          Integração tecnológica sem mudança cultural não sustenta resultados
+        </li>
+        <li class="p-3 bg-slate-800/40 rounded-xl border border-slate-700/50 text-slate-300">
+          <span class="text-blue-400 font-bold block text-sm mb-1">5</span>
+          Lean é jornada contínua, não projeto com data de término
+        </li>
+      </ol>
+    </div>
+
+    <!-- Conclusão Final -->
+    <div class="bg-slate-900/40 border border-slate-800 rounded-2xl p-6 text-xs text-slate-400 leading-relaxed">
+      <p class="mb-2">
+        O estudo demonstra como a combinação entre nivelamento da demanda, padronização, digitalização e gestão de indicadores pode contribuir para a redução do tempo de recebimento e para uma utilização mais eficiente dos recursos disponíveis.
+      </p>
+      <p>
+        Os resultados apresentados são projeções construídas a partir das premissas do estudo de caso e devem ser validados em uma implementação piloto.
+      </p>
+    </div>
+  </section>
 
   <!-- Footer -->
-  <footer class="border-t border-slate-800 bg-slate-950/50 py-6 text-center text-xs text-slate-500">
-    <p>© 2026 Carlos Roberto dos Santos Martins — Projeto Acadêmico / Portfólio Conceitual</p>
+  <footer class="border-t border-slate-800 bg-slate-950 py-8 text-center text-xs text-slate-500">
+    <div class="max-w-6xl mx-auto px-6">
+      <p class="mb-1"><strong>Carlos Roberto dos Santos Martins</strong> — Logística | Universidade Santo Amaro</p>
+      <p>Estudo de Caso Conceitual — Simulação para Portfólio</p>
+    </div>
   </footer>
 
 </body>
