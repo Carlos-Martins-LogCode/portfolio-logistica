@@ -1,4 +1,3 @@
-# Central de Portfólios & Estudos de Caso | Logística e Operações
 # 🚚 Central de Portfólios & Estudos de Caso | Logística e Operações
 
 Bem-vindo(a) à minha **Central de Portfólios de Logística e Supply Chain**!
